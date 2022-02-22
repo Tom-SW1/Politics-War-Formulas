@@ -7,7 +7,7 @@ function get_spy_count(get_nation, tactician, arcane, covert) {
   
   for (var counter = 0; counter < 60; counter++) {
     var xmlHttp = new XMLHttpRequest();
-    var url = 'https://politicsandwar.com/war/espionage_get_odds.php?id1='+get_nation+'&id2='+get_nation+'&id3=0&id4=1&id5='+(counter + 1)
+    var url = 'https://politicsandwar.com/war/espionage_get_odds.php?id1='+get_nation+'&id2='+get_nation+'&id3=0&id4=1&id5='+(counter + 1);
     xmlHttp.open('GET', url, false);
     xmlHttp.send(null);
     spies = xmlHttp.responseText;
