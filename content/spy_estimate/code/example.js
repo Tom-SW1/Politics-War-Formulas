@@ -7,13 +7,13 @@ function get_spy_count(get_nation, tactician, arcane, covert) {
   
   for (var counter = 0; counter < 60; counter++) {
     var xmlHttp = new XMLHttpRequest();
-    var url = 'https://politicsandwar.com/war/espionage_get_odds.php?id1='+get_nation+'&id2='+get_nation+'&id3=0&id4=1&id5='+(counter + 1);
+    var url = 'https://politicsandwar.com/war/espionage_get_odds.php?id1='+get_nation+'&id2='+get_nation+'&id3=0&id4=1&id5='+(counter + 1)
     xmlHttp.open('GET', url, false);
     xmlHttp.send(null);
-    spies = xmlHttp.responseText;
+    var spies = xmlHttp.responseText;
     if (spies == 'Greater than 50%') {
       var spy = (counter + 1);
-      var spy = ((safety * 25) + (spy * 100) - odds) / (3 * (odds - (safety * 25)));
+      spy = ((safety * 25) + (spy * 100) - odds) / (3 * (odds - (safety * 25)));
       if (tactician == true || covert == true) {
         spy = spy / 0.75;
       }
