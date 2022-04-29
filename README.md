@@ -4,4 +4,6 @@ This repository contains useful formulas & algorithms for the game Politics & Wa
 # Formulas/Scripts
 - spy estimating
   - `content/spy_estimate`
-  - examples written in: **Python & Javascript**
+  - - `content/spy_estimate/code/example.js` **Javascript Example**
+  - - `content/spy_estimate/code/example.py` **Python Example**
+  - - `content/spy_estimate/code/threaded_example.py` **Python Example - using multiprocessing on bulk data (coming soon)**
