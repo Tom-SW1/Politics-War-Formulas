@@ -7,21 +7,13 @@ function get_spy_count(get_nation, tactician, arcane, covert) {
   
   let min = 0;
   let max = 60;
-  while (true) {
+  while (min <= max) {
     var median = Math.round(min + max / 2);
     var xmlHttp = new XMLHttpRequest();
     var url = 'https://politicsandwar.com/war/espionage_get_odds.php?id1='+get_nation+'&id2='+get_nation+'&id3=0&id4=1&id5='+median;
     xmlHttp.open('GET', url, false);
     xmlHttp.send(null);
     var spies = xmlHttp.responseText;
-    if (min == 0 && max == 1) {
-      var spy = 0;
-      break;
-    }
-    if (max == 60 && min > 60) {
-      var spy = 60;
-      break;
-    }
     if (spies == 'Greater than 50%') {
       var xmlHttp = new XMLHttpRequest();
       var url = 'https://politicsandwar.com/war/espionage_get_odds.php?id1='+get_nation+'&id2='+get_nation+'&id3=0&id4=1&id5='+(median - 1);
@@ -29,7 +21,7 @@ function get_spy_count(get_nation, tactician, arcane, covert) {
       xmlHttp.send(null);
       var check = xmlHttp.responseText;
       if (check == 'Greater than 50%') {
-        max = max - median;
+        max = median - 1;
       }
       else {
         var spy = median;
@@ -37,7 +29,7 @@ function get_spy_count(get_nation, tactician, arcane, covert) {
       }
     }
     else {
-      min = min + median + 1;
+      min = median + 1;
     }
   }
   spy = ((safety * 25) + (spy * 100) - odds) / (3 * (odds - (safety * 25)));

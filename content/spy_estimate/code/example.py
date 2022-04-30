@@ -7,25 +7,18 @@ def get_spy_count(get_nation, tactician, arcane, covert):
   
   min = 0
   max = 60
-  while True:
+  while min <= max:
     median = int(round((min + max) / 2, 0))
     spies = requests.get(f'https://politicsandwar.com/war/espionage_get_odds.php?id1={get_nation}&id2={get_nation}&id3=0&id4=1&id5={median}').text
-    if min == 0 and max == 1:
-      spy = 0
-      break
-    if max == 60 and min > 60:
-      spy = 60
-      break
-    print(max, min)
     if spies == 'Greater than 50%':
       check = requests.get(f'https://politicsandwar.com/war/espionage_get_odds.php?id1={get_nation}&id2={get_nation}&id3=0&id4=1&id5={median - 1}').text
       if check == 'Greater than 50%':
-        max = max - median
+        max = median - 1
       else:
         spy = median
         break
     else:
-      min = min + median + 1
+      min = median + 1
   spy = ((safety * 25) + (spy * 100) - odds) / (3 * (odds - (safety * 25)))
   if tactician == True or covert == True:
     spy = spy / 0.75
