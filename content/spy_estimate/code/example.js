@@ -32,14 +32,19 @@ function get_spy_count(get_nation, tactician, arcane, covert) {
       min = median + 1;
     }
   }
-  spy = ((safety * 25) + (spy * 100) - odds) / (3 * (odds - (safety * 25)));
-  if (tactician == true || covert == true) {
-    spy = spy / 0.75;
+  if (spies == 'Greater than 50%') {
+    spy = ((safety * 25) + (spy * 100) - odds) / (3 * (odds - (safety * 25)));
+    if (tactician == true || covert == true) {
+      spy = spy / 0.75;
+    }
+    else if (arcane == true) {
+      spy = spy * 0.75;
+    }
+    return spy;
   }
-  else if (arcane == true) {
-    spy = spy * 0.75;
+  else {
+    return 60;
   }
-  return spy;
 }
 
 console.log(get_spy_count('193160', false, false, false));

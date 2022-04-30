@@ -19,11 +19,14 @@ def get_spy_count(get_nation, tactician, arcane, covert):
         break
     else:
       min = median + 1
-  spy = ((safety * 25) + (spy * 100) - odds) / (3 * (odds - (safety * 25)))
-  if tactician == True or covert == True:
-    spy = spy / 0.75
-  elif arcane == True:
-    spy = spy * 0.75
-  return spy
+  if spies == 'Greater than 50%':
+    spy = ((safety * 25) + (spy * 100) - odds) / (3 * (odds - (safety * 25)))
+    if tactician == True or covert == True:
+      spy = spy / 0.75
+    elif arcane == True:
+      spy = spy * 0.75
+    return spy
+  else:
+    return 60
 
 print(get_spy_count('193160', False, False, False))
