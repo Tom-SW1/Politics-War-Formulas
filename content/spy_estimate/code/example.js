@@ -8,7 +8,7 @@ function get_spy_count(get_nation, tactician, arcane, covert) {
   let min = 0;
   let max = 60;
   while (min <= max) {
-    var median = Math.round(min + max / 2);
+    var median = Math.round((min + max) / 2);
     var xmlHttp = new XMLHttpRequest();
     var url = 'https://politicsandwar.com/war/espionage_get_odds.php?id1='+get_nation+'&id2='+get_nation+'&id3=0&id4=1&id5='+median;
     xmlHttp.open('GET', url, false);
